@@ -1,30 +1,32 @@
 # CRUD
 ## Django CRUD app    
 
-This is a simple Django CRUD application that allows to create, retrieve, update and delete a post. If you are new to the filed of of  Django web development, this is a good way to start.
+This is a simple Django CRUD application that allows to create, retrieve, update and delete a post. The application is dockerized to learn the concept of docker workflow.
 
-The inerface is as shown
-![CRUD](int_face.png)
+## Installation
 
-To get it running on your local machine, follow the steps below:
+First, [install Docker](https://docs.docker.com/installation/). If you're new to Docker, you might also want to check out the [Hello, world! tutorial](https://docs.docker.com/userguide/dockerizing/).
 
-1. Run the commands below in your terminal:
-```bash
-$ git clone https://github.com/john-bagiliko/CRUD.git 
-```
-2. 
-```bash
-$ cd CRUD
-```
-3. Install the requirements with the command below:
+Next, clone this repo:
 
-```bash
-$ pip install -r requirements.txt
-```
-4. Run the development server with
+    $ git clone https://github.com/Dibae101/To-Do.cker-.git
+    $ cd To-Do.cker-
 
-```bash
-$ python manage.py runserver
-```
 
-5. Launch your browser and navigate to http://localhost:8000/
+Run `docker ps` to make sure your Docker host is running. If it's not, run:
+
+    $ docker-machine start <dockerhostname>
+    $ eval "$(docker-machine env <dockerhostname>)"
+
+Build the Docker image (you should be in the `python-django/` directory, which contains the `Dockerfile`):
+
+    $ docker build -t <yourname>/python-django .
+
+Run the Docker image you just created (the command will be explained in the `Development workflow` section below):
+
+    $ docker run --publish 8000:8000 python-django
+
+Run `docker ps` to verify that the Docker container is running:
+
+    CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS                          NAMES
+    2830610e8c87        <yourname>/python-django   "/usr/bin/supervisord"   25 seconds ago      Up 25 seconds       0.0.0.0:80->80/tcp, 8000/tcp   focused_banach
